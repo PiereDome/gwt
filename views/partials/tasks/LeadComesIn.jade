@@ -1,0 +1,28 @@
+// form(ng-submit='test()',ng-controller='NewLeadCtrl')
+form(ng-submit='test()')
+  fieldset
+    legend
+      h2 New Client - Lead
+    div.form-group
+      label(for='companyfName') Company Name 
+        small {{client.name}}
+      input.form-control(id='companyfName',placeholder='Company Name',ng-model='client.name')
+    div.form-group
+      label(for='contactName') Contact Name 
+        small {{client.contact.name}}
+      input.form-control(id='contactName',placeholder='Name',ng-model='client.contact.name') 
+      label(for='contactInfo') Contact Info 
+        small {{client.contact.info | contact}}
+      input.form-control(id='contactInfo',placeholder='Phone/Email',ng-model='client.contact.info')
+    div.form-group
+      label(for='lead.type') Lead Type
+      div.btn-group
+        ul
+          li
+            input(type='radio',id='phone',value='phone',ng-model='lead.type') 
+            label(for='phone') Phone
+          li
+            input(type='radio',value='other',ng-model='lead.type') 
+            label(for='other') Other
+    button.btn.btn-default Submit
+      

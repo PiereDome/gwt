@@ -1,0 +1,25 @@
+div.row(ng-controller='DashboardCtrl')
+  // left-menu
+  div.col.col-lg-12
+    div.navbar-inner.clearfix
+      a.navbar-brand(href='#')
+        span.glyphicon.glyphicon-dashboard.icon-large {{profile.firstName}}'s Dashboard
+    div.row
+      div.col.col-lg-6
+        div.well(ng-hide='profile.messages.length > 0',ng-click='profile.messages.push("hey")') Messages
+        div.panel(ng-hide='profile.messages.length < 1')
+          div.panel-heading Messages
+            span.badge.pull-right(ng-hide='profile.messages.length < 1') {{profile.messages.length}}
+          div.panel-content
+            discussions(user='profile',messages='profile.messages')
+        div.panel
+          div.panel-heading Replay
+          div.panel-content
+            button.btn(ng-click='getCSV()') Get CSV
+            button.btn(ng-click='post()') Post
+            button.btn(ng-click='put()') Put
+            button.btn(ng-click='delete()') Delete
+      div.col.col-lg-6
+        div.panel
+          div.panel-heading Task List
+          div.panel-content

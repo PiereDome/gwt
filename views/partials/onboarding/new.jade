@@ -1,0 +1,20 @@
+form(ng-submit='createClient()',name='leadForm')
+  fieldset
+    legend
+      h2 New Client - Lead
+    div.form-group
+      label(for='companyName') Company Name 
+        small {{client.name}}
+      label.error.label(ng-class='{"label-default":!submitted,"label-danger":submitted}',ng-show="leadForm.companyName.$error.required") Required!
+      input.form-control(id='companyName',placeholder='Company Name',name='companyName',ng-model='client.name',required)
+    div.form-group
+      label(for='contactName') Contact Name 
+        small {{client.contact.name}}
+      label.error.label(ng-class='{"label-default":!submitted,"label-danger":submitted}',ng-show="leadForm.contactName.$error.required") Required!
+      input.form-control(id='contactName',placeholder='Name',name='contactName',ng-model='client.contact.name',required) 
+      label(for='contactInfo') Contact Info 
+        small {{client.contact.info | contact}}
+      label.error.label(ng-class='{"label-default":!submitted,"label-danger":submitted}',ng-show="leadForm.contactInfo.$error.required") Required!
+      label.error.label.label-danger(ng-show='submitted && leadForm.contactInfo.$error.pattern') Not valid contact information
+      input.form-control(id='contactInfo',placeholder='Phone/Email',name='contactInfo',ng-model='client.contact.info',ng-pattern='contactPattern',required)
+    button.btn.btn-default(ng-click='submitted=true') Submit

@@ -1,0 +1,22 @@
+extend ../layout
+
+block body
+  div.navbar.navbar-inverse.navbar-static-top
+      button.navbar-toggle(type='button',data-toggle='collapse',data-target='.navbar-responsive-collapse')
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href='#') Greystone Worktools
+  body.modal-open
+    div.modal.block(id='loginModal')
+      div.modal-dialog
+        div.modal-content
+          div.modal-header
+            h4.modal-title Greystone Work Tools
+          div.modal-body
+            form(role='form',action='recover',method='POST')
+              div.form-group
+                label(for='username') Username/Email
+                input.form-control(type='text',id='username',name='username',ng-model='username')
+              button.btn.btn-default(type='Submit',value='Send Email') Search
+              button.btn.btn-default(value='Send Email',ng-click='cancelRecover()') Cancel

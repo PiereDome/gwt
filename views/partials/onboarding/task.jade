@@ -1,0 +1,4 @@
+div(ng-controller='OnboardingTaskCtrl')
+  div(ng-repeat='task in tasks')
+    button.btn(ng-click='completeTask(task)') {{task.title}}
+  div(ng-include='currentTask.formTemplate')

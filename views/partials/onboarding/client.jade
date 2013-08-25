@@ -1,0 +1,42 @@
+div
+  div.media
+    a.pull-right
+      img.media-object.client-logo(ng-src='{{client.logo}}')
+    div.media-body
+      h3.media-heading 
+        u 
+          b {{client.name}}
+        button.close.pull-right(type='button',ng-click='toggleRemove()') &times;
+        form.form-inline.pull-right(ng-show='showRemove',role='form',ng-submit='removeClient(client)')
+          div.form-group
+            input.form-control(type='text',ng-model='deleteClientText',placeholder='Type "delete" to remove client')
+      div {{client.contact.info | contact}}
+      div Contact: {{client.contact.name}}
+      div(ng-show='client.primaryConsultant') Consultant: {{client.primaryConsultant}}
+      div(ng-show='client.startDate') Starting Date: {{client.startDate}}
+      ul.nav.nav-pills.clear-right
+        li.cursorpointer.hover.curve5px(ng-class='{active: view=="activeTasks"}',ng-click='view = "activeTasks"')
+          a Active Tasks
+        li.cursorpointer.hover.curve5px(ng-class='{active: view=="completedTasks"}',ng-click='view = "completedTasks"')
+          a Completed Tasks
+        li.cursorpointer.hover.curve5px(ng-class='{active: view=="discussion"}',ng-click='view = "discussion"')
+          a Discussions
+        li.cursorpointer.curve5px(ng-class='{active: view=="documents"}',ng-click='view = "documents"')
+          a Documents
+  div(ng-switch='view')
+    div(ng-switch-when='discussion')
+      discussions(user='profile',messages='client.messages')
+    div(ng-switch-when='completedTasks')
+      div
+        div.media(ng-repeat='task in client.completedTasks')
+          span.pull-left(href='#')
+            img.media-object(ng-src='{{task.img}}')
+          div.media-body
+            h3.media-heading
+              span(ng-click='viewTask(task)') {{task.title}} 
+              small Completed {{task.completed | timeago}} by {{task.updatedBy}}
+    div(ng-switch-when='activeTasks')
+      tasklist(client='client',tasklist='client.activeTasks')
+    div(ng-switch-when='documents')
+      div Documents
+  

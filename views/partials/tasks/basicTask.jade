@@ -1,0 +1,18 @@
+form(name='taskForm',ng-submit='completeTask(task)')
+  fieldset
+    legend
+      // h2= title
+    each item, index in formData
+      div.form-group
+        label(for='field-#{index}') #{item.label} 
+        if item.optionModel
+          // if item.required
+          //   select.form-control(id='#{item.model}',name='#{item.model}',required,ng-model='#{item.model}',ng-options='item.fullName as item.fullName for item in #{item.optionModel}')
+          //   span.error(ng-show="myForm.input.$error.required") Required!
+          // else
+          select.form-control(type='text',id='field-#{index}',name='#{item.model}',ng-model='#{item.model}',ng-options='item.fullName as item.fullName for item in #{item.optionModel}', required)
+        else if item.dateModel
+          input(type='date',class='date-fix',id='field-#{index}',name='#{item.dateModel}',ng-model='#{item.dateModel}')
+        else if item.model
+          input.form-control(type='text',id='field-#{index}',name='#{item.model}',ng-model='#{item.model}')
+    button.btn.btn-default Complete Task

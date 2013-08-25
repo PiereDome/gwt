@@ -1,0 +1,17 @@
+div.col.col-lg-2
+  div.aspect
+  button.btn(ng-click='newClient()')
+    h1 +
+    h4 New Client
+  // div.aspect
+  // div.well.cursor-point 
+  //   div.btn New Client
+div.col.col-lg-9
+  div.col.col-lg-4(ng-repeat='client in onboardingClients')
+    div.aspect
+    div.cursorpointer.hover.curve5(ng-click='viewClient(client)')
+      form(role='form')
+        legend 
+          h4 {{client.name}}
+        div {{client.activeTasks.length}} Tasks Pending
+    div

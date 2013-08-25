@@ -1,0 +1,14 @@
+div
+  div.media(ng-repeat='task in tasklist')
+    a.pull-left(href='#')
+      img.media-object(ng-src='{{task.icon}}')
+    div.media-body(ng-class='{activeTask: currentTask == task._id}')
+      h3.media-heading.cursorpointer(ng-click='viewTask(task)')
+        span {{task.title}} 
+        small Assigned to
+          span(ng-show='task.depts | dept:true') 
+            label.label.label-success {{task.depts | dept:true}}
+            label(ng-show='task.depts | dept:false') , 
+          label &nbsp;{{task.depts | dept:false}}
+      h1 {{user}}
+      div(ng-show='currentTask == task._id',ng-include='includeUrl(task)')

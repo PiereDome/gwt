@@ -1,0 +1,27 @@
+form(ng-submit='completeTask(task)')
+  fieldset
+    legend
+      // h2= title
+    div.form-group
+      label(for='AccessType') Internet Access Type
+      input.form-control(type='text',name='AccessType',ng-model='client.discovery.internetType')
+    div.form-group
+      label(for='Bandwidth') Bandwidth
+      input.form-control(type='text',name='Bandwidth',ng-model='client.discovery.bandwidth')
+    div.form-group
+      label(for='ServerCount') Number of Servers
+      input.form-control(type='number',name='ServerCount',ng-model='client.discover.serverCount')
+    div.form-group
+      label(for='ComputerCount') Number of Computers
+      input.form-control(type='number',name='ComputerCount',ng-model='client.discover.computerCount')
+    
+    
+    // each item in formData
+    //   div.form-group
+    //     if item.model
+    //       label(for='#{item.label}') #{item.label}
+    //       input.form-control(name='#{item.label}',ng-model='#{item.model}')
+    //     else
+    //       label #{item.model}
+    button.btn.btn-default Complete Task
+      

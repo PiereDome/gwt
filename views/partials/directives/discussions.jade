@@ -1,0 +1,32 @@
+div
+  // div.media
+  //   a.pull-left(href='#')
+  //     img.media-object.lg-avatar(ng-src='{{user.avatar}}')
+  //   div.media-body
+  //     h3.media-heading {{user.userName}}
+  //     form(ng-submit='submitResponse("new", newMessage, user.avatar)')
+  //       input.input.form-control(type='text',placeholder='Write your message...',ng-model='newMessage')
+  div.media.cursorpointer(ng-repeat='message in messages',ng-class='{hover:!message.showResponses}',ng-click='toggleResponses(message)')
+    a.pull-left(href='#')
+      img.media-object.lg-avatar(ng-src='{{message.avatar}}')
+    div.media-body
+      h3.media-heading {{message.from}}
+        small Sent {{message.date|timeago}}
+      p {{message.content}}
+      div.media(ng-show='message.showResponses')
+        div.media
+          a.pull-left(href='#')
+            img.media-object(ng-src='{{user.avatar}}')
+          div.media-body
+            form(ng-submit='submitResponse(message, message.newResponse, user.avatar)')
+              input.input.form-control(type='text',placeholder='Write a response...',ng-model='message.newResponse')
+        div.media(ng-repeat='response in message.responses')
+          a.pull-left(href='#')
+            img.media-object(ng-src='{{response.avatar}}')
+          div.media-body
+            button.close.pull-right(type='button',ng-show='user.userName == response.from',ng-click='removeResponse(message, response)') &times;
+            h4.media-heading {{response.from}} 
+              small Sent {{response.date|timeago}}
+            p {{response.content}}
+        
+              // textarea.imput.form-control(type='text',placeholder='Write a comment...',ng-model='message.newResponse')
