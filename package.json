@@ -1,4 +1,9 @@
 {
     "name": "worktools",
-    "version": "0.0.1"
+    "version": "0.0.1",
+    "main":"app.js",
+    "engines": {
+      "node": "0.10.15",
+      "npm": "1.3.8"
+    }
 }
