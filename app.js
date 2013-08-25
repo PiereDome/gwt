@@ -18,7 +18,7 @@ var app = module.exports = express();
 
 // all environments
 app.set('port', process.env.PORT || 3306);
-// app.set('ip', process.env.IP || '127.0.0.1');
+app.set('ip', process.env.IP || '127.0.0.1');
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.logger('dev'));
@@ -83,6 +83,6 @@ app.get('*', routes.index);
  */
 
 
-http.createServer(app).listen(app.get('port'), function () {
+http.createServer(app).listen(app.get('port'), app.get('ip'), function () {
   console.log('Express server listening on port ' + app.get('port'));
 });
